@@ -59,14 +59,14 @@ df2['RIG_NO.']  = [i.replace(' ','') for i in df2['RIG_NO.']]
 df2['RIG_NO.']  = [i.upper() for i in df2['RIG_NO.']]
 
 
-df2['LAST_VISIT']=df2['LAST_VISIT'].astype(str)
-df2['LAST_VISIT']=df2['LAST_VISIT'].str.split(' ').str[0]
-df2["LAST_VISIT"]= pd.to_datetime(df2["LAST_VISIT"])
+df2['RIG_LAST_VISIT']=df2['RIG_LAST_VISIT'].astype(str)
+df2['RIG_LAST_VISIT']=df2['RIG_LAST_VISIT'].str.split(' ').str[0]
+df2["RIG_LAST_VISIT"]= pd.to_datetime(df2["RIG_LAST_VISIT"])
 df2=df2.set_index('TEAM_NO.')
 df2['TODAY_DATE']=datetime.date.today()
 df2["TODAY_DATE"]= pd.to_datetime(df2["TODAY_DATE"])
-df2['DAYS_COUNT'] = df2.TODAY_DATE-df2.LAST_VISIT
-df2['LAST_VISIT']=df2['LAST_VISIT'].dt.strftime('%d-%m-%Y')
+df2['DAYS_COUNT'] = df2.TODAY_DATE-df2.RIG_LAST_VISIT
+df2['RIG_LAST_VISIT']=df2['RIG_LAST_VISIT'].dt.strftime('%d-%m-%Y')
 df2['DAYS_COUNT']=df2['DAYS_COUNT'].astype('str')
 df2['DAYS_COUNT']=df2['DAYS_COUNT'].str.split(' ').str[0:2].str.join(' ')
 df2.drop(['TODAY_DATE'],axis=1, inplace=True)
