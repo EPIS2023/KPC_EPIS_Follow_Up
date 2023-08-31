@@ -70,6 +70,10 @@ df2['RIG_LAST_VISIT']=df2['RIG_LAST_VISIT'].dt.strftime('%d-%m-%Y')
 df2['DAYS_COUNT']=df2['DAYS_COUNT'].astype('str')
 df2['DAYS_COUNT']=df2['DAYS_COUNT'].str.split(' ').str[0:2].str.join(' ')
 df2.drop(['JOB_DAYS','TODAY_DATE','STARTING_DATE'],axis=1, inplace=True)
+df2['SPENT_DAYS']=df2.TODAY_DATE-df2.STARTING_DATE
+df2['SPENT_DAYS']=df2['SPENT_DAYS'].astype("str")
+df2['SPENT_DAYS']=df2['SPENT_DAYS'].str.split(" ").str[0]
+df2['SPENT_DAYS']=df2['SPENT_DAYS'].astype(str)+"/"+df2['JOB_DAYS'].astype(str)
 ######################## df3 #############################################################
 df3 = pd.read_excel(File,'All_Critical_Points')
 df3.columns  = [i.replace(' ','_') for i in df3.columns]
