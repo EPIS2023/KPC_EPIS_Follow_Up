@@ -18,12 +18,27 @@ df7.dropna(axis=0, inplace=True)
 
 df7["RIG_NO."]  = [i.replace(' ','') for i in df7["RIG_NO."]]
 df7["JOB_TYPE"]  = [i.upper() for i in df7["JOB_TYPE"]]
+
+df7["TEAM_NO."]  = df7["TEAM_NO."].str.strip()  
+df7["TEAM_NO."]  = [i.replace(' ','_') for i in df7["TEAM_NO."]]
+df7["TEAM_NO."]  = [i.upper() for i in df7["TEAM_NO."]]
+
 df7["EXPECTED_DATE"]= pd.to_datetime(df7["EXPECTED_DATE"])
 df7['EXPECTED_DATE']=df7['EXPECTED_DATE'].dt.strftime('%d-%m-%Y')
 
 df7['RIG_ORDER']=df7['RIG_ORDER'].astype('str')
 
 df7['RIG_ORDER']="Rig_"+df7['RIG_ORDER']
+
+df7['SORT'] = df7["TEAM_NO."].str.split("_").str[-1]
+df7['SORT']= df7['SORT'].astype("int")
+df7=df8.sort_values(by='SORT', ascending=True)
+df7.drop('SORT', inplace=True, axis=1)
+
+
+
+
+
 Audit = df7[df7['AUDIT/DROPS']=="Audit"]
 Drops = df7[df7['AUDIT/DROPS']=="Drops"]
 
