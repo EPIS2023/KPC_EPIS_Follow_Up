@@ -34,6 +34,11 @@ df4['PHASE']  = [i.upper() for i in df4['PHASE']]
 df4['FINAL_STATUS']=df4['FINAL_\nSTATUS']
 df4.drop(['PRIORITY','REF.','FINAL_\nSTATUS'],axis=1, inplace=True)
 
+df4['SORT'] = df4["RIG_NO."].str.split("-").str[-1]
+df4['SORT']= df4['SORT'].astype("int")
+df4=df4.sort_values(by='SORT', ascending=True)
+df4.drop('SORT', inplace=True, axis=1)
+
 
 
 Omit_Rigs=tuple(df1['RIG_NO.'].unique())
