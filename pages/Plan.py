@@ -32,7 +32,7 @@ df7['RIG_ORDER']="Rig_"+df7['RIG_ORDER']
 
 df7['SORT'] = df7["TEAM_NO."].str.split("_").str[-1]
 df7['SORT']= df7['SORT'].astype("int")
-df7=df8.sort_values(by='SORT', ascending=True)
+df7=df7.sort_values(by='SORT', ascending=True)
 df7.drop('SORT', inplace=True, axis=1)
 
 
