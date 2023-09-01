@@ -70,7 +70,7 @@ df2['RIG_LAST_VISIT']=df2['RIG_LAST_VISIT'].dt.strftime('%d-%m-%Y')
 df2['DAYS_COUNT (Since LAst Visit)']=df2['DAYS_COUNT (Since LAst Visit)'].astype('str')
 df2['DAYS_COUNT (Since LAst Visit)']=df2['DAYS_COUNT (Since LAst Visit)'].str.split(' ').str[0:2].str.join(' ')
 df2['SPENT_DAYS']=df2.TODAY_DATE-df2.STARTING_DATE
-
+df2['JOB_DAYS']=df2['JOB_DAYS'].astype(int)
 df2['SPENT_DAYS']=df2['SPENT_DAYS'].astype("str")
 df2['SPENT_DAYS']=df2['SPENT_DAYS'].str.split(" ").str[0]
 df2['SPENT_DAYS']=df2['SPENT_DAYS'].astype(int)+1
