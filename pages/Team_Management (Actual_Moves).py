@@ -24,6 +24,16 @@ df8["RIG_ORDER"]=df8["RIG_ORDER"].astype("int")
 dict= {-1:"Previous",0:"Now",1:"Next"}
 df8["RIG_ORDER"]=df8["RIG_ORDER"].map(dict)
 
+df8["TEAM_NO."]  = df8["TEAM_NO."].str.strip()  
+df8["TEAM_NO."]  = [i.replace(' ','_') for i in df8["TEAM_NO."]]
+df8["TEAM_NO."]  = [i.upper() for i in df8["TEAM_NO."]]
+
+df8['SORT'] = df8["TEAM_NO."].str.split("_").str[-1]
+df8['SORT']= df8['SORT'].astype("int")
+df8=df8.sort_values(by='SORT', ascending=True)
+df8.drop('SORT', inplace=True, axis=1)
+
+
 Audit = df8[df8['AUDIT/DROPS']=="Audit"]
 Drops = df8[df8['AUDIT/DROPS']=="Drops"]
 
